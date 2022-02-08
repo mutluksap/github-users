@@ -1,1 +1,5 @@
-<template><p>404</p></template>
+<template>
+  <app-header />
+  <p>404</p>
+  <app-footer />
+</template>

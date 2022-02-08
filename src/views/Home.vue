@@ -1,11 +1,9 @@
 <template>
   <div class="flex flex-col justify-between h-screen bg-gray-500">
     <app-header />
-    <div>
-      <h1 class="h-100 text-white text-center text-4xl">
-        Search Github Profile
-      </h1>
-      <div class="text-center mt-8 w-full flex items-center justify-center">
+    <div class="text-center">
+      <h1 class="h-100 text-white text-4xl">Search Github Profile</h1>
+      <div class="my-8 w-full flex items-center justify-center">
         <input
           v-model="searchedUser"
           @keypress.enter="searchUser"
@@ -17,29 +15,40 @@
           Search
         </button>
       </div>
+      <div v-if="isloaderon" class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div v-else>{{ users }}</div>
     </div>
-    <v-pagination
-      v-model="page"
-      :pages="10"
-      :range-size="1"
-      active-color="#DCEDFF"
-      @update:modelValue="updateHandler"
-    />
+
     <app-footer />
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
       searchedUser: "",
-      page: 20,
+      isloaderon: false,
+      users: null,
     };
   },
   methods: {
     searchUser() {
-      alert(this.searchedUser);
+      this.isloaderon = true;
+      setTimeout(() => {
+        axios
+          .get(`https://api.github.com/search/users?q=${this.searchedUser}`)
+          .then((response) => {
+            this.users = response.data.items;
+          });
+        this.isloaderon = false;
+      }, 1200);
     },
   },
 };
