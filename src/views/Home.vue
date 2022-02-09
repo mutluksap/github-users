@@ -52,9 +52,10 @@ export default {
           .get(`https://api.github.com/search/users?q=${this.searchedUser}`)
           .then((response) => {
             this.users = response.data.items;
+            console.log(response);
           });
         this.isloaderon = false;
-      }, 1200);
+      }, 1000);
     },
     removeResult() {
       this.users = null;
