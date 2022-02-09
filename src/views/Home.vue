@@ -2,10 +2,11 @@
   <div class="flex flex-col justify-between h-screen bg-gray-500">
     <app-header />
     <div class="text-center">
-      <h1 class="h-100 text-white text-4xl">Search Github Profile</h1>
+      <h1 class="h-100 text-white text-4xl mt-2">Search Github Profile</h1>
       <div class="my-8 w-full flex items-center justify-center">
         <input
           v-model="searchedUser"
+          @input="removeResult"
           @keypress.enter="searchUser"
           class="border-gray-700 border-2 rounded w-2/5 bg-transparent p-2 text-white mr-2 focus:outline-none"
           type="search"
@@ -21,16 +22,21 @@
         <div></div>
         <div></div>
       </div>
-      <div v-else>{{ users }}</div>
+      <div class="h-auto bg-gray-500" v-else>
+        <app-users :allUsers="this.users"></app-users>
+      </div>
     </div>
-
     <app-footer />
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import Users from "../components/Users.vue";
 export default {
+  components: {
+    appUsers: Users,
+  },
   data() {
     return {
       searchedUser: "",
@@ -49,6 +55,9 @@ export default {
           });
         this.isloaderon = false;
       }, 1200);
+    },
+    removeResult() {
+      this.users = null;
     },
   },
 };
