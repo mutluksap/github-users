@@ -1,7 +1,12 @@
 <template>
   <div class="flex flex-col items-center justify-center">
-    <app-pagination></app-pagination>
-    <div class="flex flex-wrap px-48 w-full justify-center">
+    <app-pagination
+      @count="changeUsers"
+      :TotalUsersCount="this.usersCount"
+      v-if="allUsers !== null"
+    ></app-pagination>
+    {{ data }}
+    <div class="flex flex-wrap px-10 w-full justify-center mt-5">
       <app-user :user="user" :key="user" v-for="user in allUsers"></app-user>
     </div>
   </div>
@@ -11,10 +16,15 @@
 import User from "./User";
 import Pagination from "./Pagination.vue";
 export default {
-  props: ["allUsers"],
+  props: ["allUsers", "usersCount"],
   components: {
     appUser: User,
     appPagination: Pagination,
+  },
+  methods: {
+    changeUsers($event) {
+      this.$emit("selectedPage", $event);
+    },
   },
 };
 </script>

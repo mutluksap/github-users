@@ -21,7 +21,7 @@
       <span class="ml-3">Github Users</span>
     </router-link>
     <span class="inline-block mx-3">|</span>
-    <div class="mr-2">&copy; 2021</div>
+    <div class="mr-2">&copy; 2022</div>
     <div>
       <router-link to="/mutluksap"> Mutlu Kasap </router-link>
     </div>

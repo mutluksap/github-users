@@ -23,7 +23,12 @@
         <div></div>
       </div>
       <div class="h-auto bg-gray-500" v-else>
-        <app-users :allUsers="this.users"></app-users>
+        <app-users
+          @selectedPage="showSelectedPage"
+          :searcUserKeys="searchedUser"
+          :usersCount="totalUsersCount"
+          :allUsers="users"
+        ></app-users>
       </div>
     </div>
     <app-footer />
@@ -42,6 +47,7 @@ export default {
       searchedUser: "",
       isloaderon: false,
       users: null,
+      totalUsersCount: null,
     };
   },
   methods: {
@@ -52,10 +58,19 @@ export default {
           .get(`https://api.github.com/search/users?q=${this.searchedUser}`)
           .then((response) => {
             this.users = response.data.items;
-            console.log(response);
+            this.totalUsersCount = response.data.total_count;
           });
         this.isloaderon = false;
       }, 1000);
+    },
+    showSelectedPage($event) {
+      axios
+        .get(
+          `https://api.github.com/search/users?q=${this.searchedUser}&page=${$event}`
+        )
+        .then((response) => {
+          this.users = response.data.items;
+        });
     },
     removeResult() {
       this.users = null;
