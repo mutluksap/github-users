@@ -1,9 +1,9 @@
 <template>
   <v-pagination
     v-model="page"
-    :pages="TotalUsersCount / 4"
+    :pages="TotalUsersCount < 1020 ? parseInt(TotalUsersCount / 30 + 1) : 34"
     :range-size="10"
-    active-color="#f00"
+    active-color="red"
     @update:modelValue="updateHandler"
   />
 </template>

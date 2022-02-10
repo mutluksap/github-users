@@ -2,7 +2,7 @@
   <div class="flex flex-col items-center justify-center">
     <app-pagination
       @count="changeUsers"
-      :TotalUsersCount="this.usersCount"
+      :TotalUsersCount="usersCount"
       v-if="allUsers !== null"
     ></app-pagination>
     {{ data }}

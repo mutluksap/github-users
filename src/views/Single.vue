@@ -30,7 +30,7 @@
             >Repos {{ user.public_repos }}
           </a>
         </div>
-        <div class="flex justify-center items-center mb-6">
+        <div v-if="user.location" class="flex justify-center items-center mb-6">
           <div class="flex items-center mr-1">
             <svg
               stroke="currentColor"
@@ -77,6 +77,25 @@
     </div>
     <div class="text-3xl font-bold my-14">
       Repositories ({{ repos.length }})
+    </div>
+    <div class="flex w-full justify-center">
+      <div
+        :key="repo"
+        v-for="repo in repos"
+        class="border-2 border-white rounded-md w-1/4 p-3 flex flex-col items-center bg-gray-700 mr-3 mb-3"
+      >
+        <div class="w-full">
+          <div class="flex items-center">
+            <span class="text-xl font-bold">{{ repo.name }}</span>
+            <span class="inline-flex px-3 border rounded-full">{{
+              repo.language
+            }}</span>
+          </div>
+          <div>
+            {{ repo.description }}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <app-footer />
