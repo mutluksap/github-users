@@ -49,7 +49,11 @@
           </div>
           <span class="text-2xl font-medium">{{ user.location }}</span>
         </div>
-        <a target="_blank" :href="user.html_url">
+        <a
+          class="hover:bg-white hover:text-gray-500 inline-flex overflow-hidden"
+          target="_blank"
+          :href="user.html_url"
+        >
           <div
             class="text-white border p-2 rounded-md cursor-pointer inline-flex items-center"
           >
@@ -78,22 +82,43 @@
     <div class="text-3xl font-bold my-14">
       Repositories ({{ repos.length }})
     </div>
-    <div class="flex w-full justify-center">
+    <div class="flex w-full justify-center flex-wrap">
       <div
         :key="repo"
         v-for="repo in repos"
+        :class="repo.language == 'javascript' ? 'bg-red-600' : 'bg-white'"
         class="border-2 border-white rounded-md w-1/4 p-3 flex flex-col items-center bg-gray-700 mr-3 mb-3"
       >
         <div class="w-full">
-          <div class="flex items-center">
+          <div class="flex items-center mb-2">
             <span class="text-xl font-bold">{{ repo.name }}</span>
-            <span class="inline-flex px-3 border rounded-full">{{
-              repo.language
-            }}</span>
+            <span
+              v-if="repo.language"
+              class="inline-flex px-3 border rounded-full ml-1.5"
+              >{{ repo.language }}</span
+            >
+            <span v-else class="inline-flex px-3 border rounded-full ml-1.5">
+              .MD
+            </span>
           </div>
-          <div>
+          <div class="mb-2">
             {{ repo.description }}
           </div>
+        </div>
+        <div class="flex justify-start w-full flex-1 items-end">
+          <a
+            class="inline-flex border p-2 rounded-lg text-black border-black mr-2"
+            target="_blank"
+            :href="repo.svn_url"
+            >View Repo</a
+          >
+          <a
+            v-if="repo.homepage !== null"
+            class="inline-flex border p-2 rounded-lg text-black border-black"
+            target="_blank"
+            :href="repo.homepage"
+            >Live Demo</a
+          >
         </div>
       </div>
     </div>
