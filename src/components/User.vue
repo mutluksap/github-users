@@ -1,6 +1,6 @@
 <template>
   <div
-    class="border-2 border-white rounded-md w-1/6 p-5 flex flex-col items-center bg-gray-700 mr-3 mb-3"
+    class="border-2 border-white rounded-md w-full sm:w-1/6 p-5 flex flex-col items-center bg-gray-700 mr-3 mb-3"
   >
     <div class="rounded-full w-28 h-28 overflow-hidden">
       <img :src="user.avatar_url" alt="" />

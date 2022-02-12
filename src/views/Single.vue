@@ -4,7 +4,9 @@
     <h1 class="text-4xl font-bold my-5 text-center">
       {{ user.login }} Github Profile
     </h1>
-    <div class="flex items-center border rounded-xl w-5/12 p-5">
+    <div
+      class="flex items-center border rounded-xl w-full sm:w-5/12 p-5 flex-col sm:flex-row"
+    >
       <div class="rounded-full overflow-hidden w-40 h-40">
         <img :src="user.avatar_url" alt="" />
       </div>
@@ -50,7 +52,7 @@
           <span class="text-2xl font-medium">{{ user.location }}</span>
         </div>
         <a
-          class="hover:bg-white hover:text-gray-500 inline-flex overflow-hidden"
+          class="inline-flex hover:overflow-hidden"
           target="_blank"
           :href="user.html_url"
         >
@@ -82,12 +84,11 @@
     <div class="text-3xl font-bold my-14">
       Repositories ({{ repos.length }})
     </div>
-    <div class="flex w-full justify-center flex-wrap">
+    <div class="flex w-full justify-center flex-row sm::flex-col flex-wrap">
       <div
         :key="repo"
         v-for="repo in repos"
-        :class="repo.language == 'javascript' ? 'bg-red-600' : 'bg-white'"
-        class="border-2 border-white rounded-md w-1/4 p-3 flex flex-col items-center bg-gray-700 mr-3 mb-3"
+        class="border-2 border-white rounded-md w-full sm:w-1/4 p-3 flex flex-col items-center bg-gray-700 mr-3 mb-3"
       >
         <div class="w-full">
           <div class="flex items-center mb-2">
@@ -107,14 +108,14 @@
         </div>
         <div class="flex justify-start w-full flex-1 items-end">
           <a
-            class="inline-flex border p-2 rounded-lg text-black border-black mr-2"
+            class="inline-flex border p-2 rounded-lg text-black border-black mr-2 hover:bg-white hover:border-white transition-all"
             target="_blank"
             :href="repo.svn_url"
             >View Repo</a
           >
           <a
             v-if="repo.homepage !== null"
-            class="inline-flex border p-2 rounded-lg text-black border-black"
+            class="inline-flex border p-2 rounded-lg text-black border-black hover:bg-white hover:border-white transition-all"
             target="_blank"
             :href="repo.homepage"
             >Live Demo</a

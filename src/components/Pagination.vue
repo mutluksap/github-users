@@ -2,7 +2,7 @@
   <v-pagination
     v-model="page"
     :pages="TotalUsersCount < 1020 ? parseInt(TotalUsersCount / 30 + 1) : 34"
-    :range-size="10"
+    :range-size="5"
     active-color="red"
     @update:modelValue="updateHandler"
   />

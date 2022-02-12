@@ -5,8 +5,9 @@
       :TotalUsersCount="usersCount"
       v-if="allUsers !== null"
     ></app-pagination>
-    {{ data }}
-    <div class="flex flex-wrap px-10 w-full justify-center mt-5">
+    <div
+      class="flex flex-wrap px-10 w-full justify-center mt-5 flex-col sm:flex-row"
+    >
       <app-user :user="user" :key="user" v-for="user in allUsers"></app-user>
     </div>
   </div>
