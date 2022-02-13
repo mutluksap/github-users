@@ -1,6 +1,6 @@
 <template>
   <footer
-    class="bg-black py-2 px-48 flex justify-center items-center text-white"
+    class="bg-black py-2 px-0 sm:px-48 flex justify-center items-center text-white"
   >
     <router-link class="flex items-center" to="/">
       <svg

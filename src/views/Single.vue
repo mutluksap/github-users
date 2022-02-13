@@ -5,22 +5,22 @@
       {{ user.login }} Github Profile
     </h1>
     <div
-      class="flex items-center border rounded-xl w-full sm:w-5/12 p-5 flex-col sm:flex-row"
+      class="flex items-center border rounded-xl w-full sm:w-5/12 p-2 sm:p-5 flex-col sm:flex-row"
     >
       <div class="rounded-full overflow-hidden w-40 h-40">
         <img :src="user.avatar_url" alt="" />
       </div>
-      <div class="flex-1 text-center p-5">
-        <div class="text-3xl font-medium mb-2">{{ user.name }}</div>
+      <div class="flex-1 text-center p-0 sm:p-5">
+        <div class="text-3xl font-medium my-2">{{ user.name }}</div>
         <div class="flex justify-evenly my-5 font-bold">
           <a
-            class="bg-purple-500 rounded-full px-2"
+            class="bg-purple-500 rounded-full px-2 mr-1"
             target="_blank"
             :href="'https://github.com/' + user.login + '?tab=followers'"
             >Followers {{ user.followers }}
           </a>
           <a
-            class="rounded-full px-2 bg-red-500"
+            class="rounded-full px-2 bg-red-500 mr-1"
             target="_blank"
             :href="'https://github.com/' + user.login + '?tab=following'"
             >Following {{ user.following }}
@@ -88,7 +88,7 @@
       <div
         :key="repo"
         v-for="repo in repos"
-        class="border-2 border-white rounded-md w-full sm:w-1/4 p-3 flex flex-col items-center bg-gray-700 mr-3 mb-3"
+        class="border-2 border-white rounded-md w-full sm:w-1/4 p-3 flex flex-col items-center bg-gray-700 mr-0 sm:mr-3 mb-3"
       >
         <div class="w-full">
           <div class="flex items-center mb-2">
